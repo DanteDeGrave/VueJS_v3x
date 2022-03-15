@@ -33,4 +33,8 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
+
+.post:not(:last-child) {
+  margin-bottom: 12px;
+}
 </style>
