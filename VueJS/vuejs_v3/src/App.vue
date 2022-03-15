@@ -1,8 +1,17 @@
 <template>
   <div class="app">
-    <post-form
-      @create="createPost"
-    />
+    <h1>Страница с постами</h1>
+    <my-button
+      @click="showDialog"
+      style="margin: 12px 0;"
+    >
+      Создать пост
+    </my-button>
+    <my-dialog v-model:show="dialogVisible">
+      <post-form
+          @create="createPost"
+      />
+    </my-dialog>
     <post-list
       :posts="posts"
       @remove="removePost"
@@ -13,6 +22,7 @@
 <script>
 import PostList from "@/components/PostList";
 import PostForm from "@/components/PostForm";
+import axios from 'axios';
 export default {
   components: {
     PostList, PostForm
@@ -20,15 +30,20 @@ export default {
   data() {
     return {
       posts: [],
+      dialogVisible: false,
     }
   },
   methods: {
     createPost(post) {
       this.posts.push(post);
+      this.dialogVisible = false;
     },
     removePost(post) {
       this.posts = this.posts.filter(p => p.id !== post.id);
     },
+    showDialog() {
+      this.dialogVisible = true;
+    }
   }
 }
 </script>
