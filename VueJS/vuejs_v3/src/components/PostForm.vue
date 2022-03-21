@@ -12,6 +12,7 @@
     <my-button
       class="btn-component"
       @click="createPost"
+      :btnType="btnType"
     >
       Создать
     </my-button>
@@ -25,7 +26,8 @@ export default {
       post: {
         title: '',
         body: '',
-      }
+      },
+      btnType: 'button',
     }
   },
   methods: {
